@@ -14,7 +14,7 @@ class Enemy
 
 	def draw
 		if @exploded
-			@image.draw_rot(@x, @y, 1, 90.0)
+			#@image.draw_rot(@x, @y, 1, 90.0)
 		else
 			@image.draw_rot(@x, @y, 1, 180.0)
 		end	
@@ -31,6 +31,7 @@ class Bullet
 	def initialize(window, x, y)
 		@image = Gosu::Image.new(window, "media/Bullet.png")
 		@x, @y = x, y
+		#@direction = up
 	end
 
 	def draw
@@ -100,14 +101,15 @@ class GameWindow < Gosu::Window
 			@player.move_left
 		end
 		if button_down? Gosu::KbRight or button_down? Gosu::GpRight then
-	    	@player.move_right
-	    end
-	    if button_down? Gosu::KbSpace
-	    	@player.shoot(@bullets)
-	    end
+	  	@player.move_right
+	  end
+	  if button_down? Gosu::KbSpace
+	  	@player.shoot(@bullets)
+	  end
 
-	    @bullets.each { |bullet| bullet.move }
-	    @enemies.each { |enemy| enemy.hit_by(@bullets) }
+	  @bullets.each { |bullet| bullet.move }
+	  @enemies.each { |enemy| enemy.hit_by(@bullets) }
+
 	end
 
 	def draw
